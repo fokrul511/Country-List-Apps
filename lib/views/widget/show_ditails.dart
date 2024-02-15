@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 
 class ShowCountryDitails extends StatelessWidget {
-  String? countryName;
-  String? flagImage;
-  String? officialName;
-  String? nativeName;
-  bool isLoding = false;
+  final String? countryName;
+  final String? flagImage;
+  final String? officialName;
+  final String? population;
+  final bool isLoding = false;
+  final String? startOfWeek;
+  final String? region;
+  final String? subregion;
 
-  ShowCountryDitails(
-      {this.countryName, this.flagImage, this.officialName, this.nativeName});
+  ShowCountryDitails({
+    super.key,
+    this.countryName,
+    this.flagImage,
+    this.officialName,
+    this.population,
+    this.startOfWeek,
+    this.region,
+    this.subregion,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +33,7 @@ class ShowCountryDitails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             image(),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(
@@ -31,17 +42,23 @@ class ShowCountryDitails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    'Ditails:',
+                  const Text(
+                    'About:',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
-                  infoText("OfficialName: ${officialName ?? ""}"),
-                  SizedBox(height: 10),
-                  infoText("NativeName: ${nativeName ?? ""}")
+                  const SizedBox(height: 10),
+                  infoText("Official Name: ${officialName ?? ""}"),
+                  const SizedBox(height: 10),
+                  infoText("Population: ${population ?? "".toString()}"),
+                  const SizedBox(height: 10),
+                  infoText("Start Of Week: ${startOfWeek ?? "".toString()}"),
+                  const SizedBox(height: 10),
+                  infoText("Region: ${region ?? "".toString()}"),
+                  const SizedBox(height: 10),
+                  infoText("SubRegion: ${subregion ?? "".toString()}"),
                 ],
               ),
             )
@@ -54,7 +71,10 @@ class ShowCountryDitails extends StatelessWidget {
   Widget infoText(String text) {
     return Text(
       text,
-      style: TextStyle(fontSize: 18),
+      style: const TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 
@@ -66,7 +86,7 @@ class ShowCountryDitails extends StatelessWidget {
         child: Image(
           image: NetworkImage(flagImage ?? ""),
           width: double.infinity,
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
     );

@@ -27,18 +27,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('All Country List'),
+        title: const Text('All Country List'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Visibility(
           visible: isLodingScreen == false,
-          replacement: Center(
+          replacement: const Center(
             child: CircularProgressIndicator(),
           ),
           child: GridView.builder(
             itemCount: countryList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 3,
               crossAxisSpacing: 3,
@@ -53,7 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         flagImage: countryList[index].flagImage,
                         countryName: countryList[index].countryName,
                         officialName: countryList[index].officialName,
-                        nativeName: countryList[index].nativeName,
+                        population: countryList[index].population.toString(),
+                        startOfWeek: countryList[index].startOfWeek,
+                        region: countryList[index].region,
+                        subregion: countryList[index].subregion,
+
                       ),
                     ),
                   );
@@ -71,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Text(
                           countryList[index].countryName ?? "",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       )
@@ -96,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
       var list = responsBody;
       for (var item in list) {
         Country country = Country.formJson(item);
+        print('Fokrul debug');
         countryList.add(country);
       }
       setState(() {});
